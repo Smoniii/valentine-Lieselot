@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container" id="content">
+    <h1>Will you be my valentine?❤️</h1>
+    <button id="yesBtn">Yes!💘</button>
+    <button id="noBtn">No🙄</button>
+  </div>
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    let scale = 1;
+
+    noBtn.addEventListener("click", () => {
+        scale += 0.3;
+        yesBtn.style.transform = `scale(${scale})`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+        document.getElementById("content").innerHTML = `
+        <h1>YESSS 🥰💖</h1>
+        <p>I love youuu!💕</p>
+        `;
+    });
+
+    const texts = [
+        "No?🙄",
+        "You sure?🤔",
+        "Really?😯",
+        "Plssss🥺",
+        "Plssssssssssssssssssss😭",
+        "You're missing something😓",
+        "This is emberassing😅",
+        "STOPPP😠",
+        "CLICK YES NOW👉"
+    ];
+
+    let noCount = 0;
+
+    noBtn.addEventListener("click", moveButton);
+
+    function moveButton() {
+        const padding = 20;
+
+        const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+        const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.left = `${randomX}px`;
+        noBtn.style.top = `${randomY}px`;
+
+        noBtn.textContent = texts[noCount % texts.length];
+        noCount++;
+    }
+  </script>
+</body>
+</html>
