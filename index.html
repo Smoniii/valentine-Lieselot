@@ -17,6 +17,18 @@
 
     let scale = 1;
 
+    function growYesButton() {
+        scale += 0.3;
+        yesBtn.style.transform = `scale(${scale})`;
+        yesBtn.style.transition = "transform 10s";
+        for (let i = 0; i < 50; i++){
+            setTimeout(() => {
+                scale += 0.3;
+                yesBtn.style.transform = `scale(${scale})`;
+            }, 1000);
+        }
+    }
+
     noBtn.addEventListener("click", () => {
         scale += 0.3;
         yesBtn.style.transform = `scale(${scale})`;
@@ -36,18 +48,33 @@
         "Plssss🥺",
         "Plssssssssssssssssssss😭",
         "You're missing something😓",
-        "This is emberassing😅",
-        "STOPPP😠",
+        "I'm getting angry😠",
+        "STOPPP😡",
         "CLICK YES NOW👉"
     ];
 
-    let noCount = 0;
+    let noCount = 1;
+    const maxAttempts = 9;
 
     noBtn.addEventListener("click", moveButton);
 
     function moveButton() {
-        const padding = 20;
+        if (noCount >= maxAttempts) {
+        noBtn.style.display = "none";
 
+        const msg = document.createElement("h1");
+        msg.textContent = "YOU HAVE NO CHOICE NOW!😈";
+        msg.style.marginTop = "20px";
+        msg.style.fontSize = "80px";
+        msg.style.color = "#ff4d6d";
+
+        growYesButton();
+
+        noBtn.parentElement.appendChild(msg);
+        return;
+        }
+
+        const padding = 20;
         const maxX = window.innerWidth - noBtn.offsetWidth - padding;
         const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
@@ -60,6 +87,8 @@
         noBtn.textContent = texts[noCount % texts.length];
         noCount++;
     }
+
+    
   </script>
 </body>
 </html>
