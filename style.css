@@ -33,6 +33,7 @@ button {
     background-color: #ff4d6d;
     color: white;
     margin-left: -130px;
+    transition: transform 0.3s;
 }
 
 #noBtn {
